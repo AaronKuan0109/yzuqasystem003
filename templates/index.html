@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>元智大學教務處QA系統</title>
+    <link rel="stylesheet" type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/all.css">
+</head>
+<body>
+    <header>
+        <h2 class="logo"><a href="https://www.fetnet.net/content/cbu/tw/index.html">遠傳 logo</a></h2>
+        <h1>元智大學教務處QA系統</h1>
+    </header>
+    <main class="wrap">
+        <div class="chat-area">
+            <div class="chat-history"></div>
+            <form action="/get_response" method = "post" accept-charset="UTF-8" id="chat-form">
+                <input type="text" class="user-input" placeholder="Ask a question..." name="user_input">
+                <button type="button" id = "startBtn"><i class="fa-solid fa-microphone"></i></button>
+                <button type="button" id = "stopBtn"><i class="fas fa-microphone-slash"></i></button>
+                <button type="submit" class="send-button">Send</button>
+            </form>
+        </div>    
+    </main>
+    <script src="../static/index.js"></script>
+</body>
+</html>
