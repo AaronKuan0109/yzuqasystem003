@@ -65,12 +65,12 @@ h1 {
 
 .logo {
     display: block;
-    background: url('https://github.com/loading2022/FarEastoneHR-QA/blob/main/images/logo.png?raw=true') no-repeat;
+    background: url('https://github.com/AaronKuan0109/yzuqasystem001/blob/main/static/images/yzu_logo.png?raw=true') no-repeat;
     text-indent: 101%;
     overflow: hidden; 
     white-space: nowrap; 
-    width: 140px;
-    height: 50px;
+    width: 170px;/* 140 */
+    height: 80px;/* 150 */
     background-size: contain;
     float: left;
 }
@@ -94,11 +94,17 @@ img {
 	
 }
 
+
+
 .message {
     margin: 5px 0px;
     width: fit-content;
     border-radius: 3px;
 }
+
+
+
+
 
 .user {
     text-align: right;
@@ -114,6 +120,7 @@ img {
 
 .user p {
     background-color: #CFD9E6;
+    font-size:19px;
     margin-right: 10px;
     padding: 20px;
 }
@@ -129,15 +136,28 @@ img {
 }
 
 .assistant p {
-    background-color: #D0CFE6;
+    font-size: 19px; 
+	
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+	
     margin-left: 10px;
     border-radius: 3px;
     padding: 20px;
     line-height: 1.5;
-   
-
 }
-
 .chat-history {
     width: 100%;
     max-width: 100%;
