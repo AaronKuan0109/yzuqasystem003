@@ -138,6 +138,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // 提交表單的監聽
     chatForm.addEventListener("submit", function(event) {
         event.preventDefault();
+         const mainTitle = document.getElementById("main-title");
+        if (mainTitle) {
+         mainTitle.innerHTML = ''; // 清空中央標題文字內容
+        }
+
+    // 在右上角標題中顯示文字
+        const rightTitle = document.getElementById("right-title");
+        if (rightTitle) {
+         rightTitle.innerHTML = 'Military Education<br>QA System'; // 在右上角顯示文字
+        }
         submitForm();
     });
 });
