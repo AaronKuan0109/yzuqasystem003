@@ -21,8 +21,47 @@ time, mark, audio, video {
 }
 
 article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+footer,  hgroup, menu, nav, section {
 	display: block;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85px; /* 設定固定高度 */
+    background-color: #ffffff;
+    z-index: 1000; /* 保持在最上層 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.center-title {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    font-weight: bold;
+}
+.center-title .subtitle {
+    font-size: 20px; /* Ask Anytime, Solve Anywhere 的字體大小 */
+    font-weight: normal;
+    display: block; /* 確保新行排列 */
+    font-style: italic; /* 設置斜體 */
+    color: #555; /* 可選：讓副標題的顏色稍微淡一些 */
+}
+.right-title {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    font-size: 2.1rem;
+    font-weight: bold;
+    text-align: right;
+    display: block; /* 確保右上標題顯示 */
 }
 body {
 	line-height: 1;
@@ -69,15 +108,17 @@ h1 {
     text-indent: 101%;
     overflow: hidden; 
     white-space: nowrap; 
-    width: 170px;/* 140 */
-    height: 80px;/* 150 */
+    width: 240px;/* 140 */
+    height: 90px;/* 150 */
     background-size: contain;
     float: left;
+    margin-top: 20px; /* 新增上下的間距 */
 }
 
 .wrap {
     max-width: 90vw; /* 將寬度增加到90vw */
     margin: 0 auto;
+    margin-top: 80px;
 }
 
 img {
@@ -163,7 +204,7 @@ img {
     max-width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    height: 70vh;
+    height: 80vh;
     margin: 0 auto;
     word-wrap: break-word;
 }
