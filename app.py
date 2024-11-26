@@ -109,8 +109,7 @@ def get_response():
 
     # 将向量搜索到的文档内容和对话历史结合为上下文
     history_text = "\n".join([f"User: {entry['user']}\nAssistant: {entry['assistant']}" for entry in chat_history])
-    combined_input = history_text + "\n\n" + "相關資料:\n" + "\n".join([doc.page_content for doc in docs]) + "\n\n" + f"User: {user_input}"
-
+    
     # 初始化语言模型（LLM），配置生成回答的参数
     llm = ChatOpenAI(model_name="gpt-4o", temperature=0.1, max_tokens=2500)
 
@@ -120,6 +119,7 @@ def get_response():
         "回答用戶的問題時，請務必提供相關的網址連接，並盡可能提供相關細節與資訊、列出具體的流程步驟和聯系人相關信息來回答用戶問題。"
         "請務必提供相關的數據或資料有提供的網址連接。"
     )
+    combined_input =prompt+history_text + "\n\n" + "相關資料:\n" + "\n".join([doc.page_content for doc in docs]) + "\n\n" + f"User: {user_input}"
 
     # 加载问答链（QA chain），用于处理问答任务
     chain = load_qa_chain(llm, chain_type="stuff")
