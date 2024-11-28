@@ -37,27 +37,7 @@ vector_store = Chroma(
 class NamedBytesIO(io.BytesIO):
     name = 'transcript.wav'  # 设置默认的文件名
 
-# 聊天历史记录的存储
 chat_history = []
-
-# 定义问题模板
-question_templates = {
-    "證明": [
-        "如何申請{keyword}？",
-        "{keyword}需要哪些文件？",
-        "{keyword}的用途是什麼？",
-        "辦理{keyword}的流程是什麼？",
-        "{keyword}需要多久可以拿到？"
-    ],
-    "申請": [
-        "申請{keyword}的流程是什麼？",
-        "{keyword}的條件有哪些？",
-        "辦理{keyword}需要多長時間？",
-        "{keyword}的審核標準是什麼？",
-        "{keyword}的辦理費用是多少？"
-    ],
-   
-}
 
 # 定义回答后处理函数
 def post_process_answer(answer_text):
@@ -88,7 +68,11 @@ def post_process_answer(answer_text):
 @app.route('/')
 def index():
     return render_template('index.html')
+    
 
+
+
+    
 # 定义获取回答的路由，处理 POST 请求
 @app.route('/get_response', methods=['POST'])
 def get_response():
@@ -144,6 +128,24 @@ def get_response():
 
     # 返回生成的回答和範例問題
     return jsonify({'response': answer})
+
+@app.route('/upload-audio', methods=['POST'])
+def upload_audio():
+    audio_file = request.files['audio']
+    if audio_file:
+        audio_stream = NamedBytesIO(audio_file.read())
+        audio_stream.name = 'transcript.wav' 
+
+        transcript = client.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_stream,
+            response_format='text',
+            language="zh"  # 指定中文
+        )
+        cc = OpenCC('s2t')
+        text = cc.convert(transcript)
+        return jsonify({'message': '音頻已處理', 'transcript': text})
+    return jsonify({'error': '沒有接收到音訊文件'}), 400
 
 # 运行 Flask 应用，设置调试模式和端口号
 if __name__ == '__main__':
